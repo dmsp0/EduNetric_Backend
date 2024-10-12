@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.4'  // 스프링 부트 3 사용
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.edunetric'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web' // REST API 개발, Spring MVC로 웹 애플리케이션 구현
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // 데이터베이스 접근 및 ORM 지원
+    implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 보안으로 인증 및 권한 관리 기능
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.0' // XML 데이터 처리
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.1' // JAXB API : XML->JAVA, JAVA->XML 변환
+    implementation 'org.glassfish.jaxb:jaxb-runtime:3.0.2' // JAXB API 실제 구현체, 객체 간 변환 작업 수행
+    implementation 'jakarta.transaction:jakarta.transaction-api:2.0.0' // 트랜잭션 관리: Spring, JPA에서 트랜잭션 처리 시 사용
+
+    // 런타임 데이터베이스 의존성
+    runtimeOnly 'mysql:mysql-connector-java:8.0.33' // MySQL DB와 Java 연결 드라이버
+
+    // Lombok: 반복적인 코드 생성을 줄여줌
+    compileOnly 'org.projectlombok:lombok' // 컴파일 시에만 적용
+    annotationProcessor 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // 스프링 부트 개발 도중 자동 리스타트
+
+    // 테스트 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring 통합 테스트용
+    testImplementation platform('org.junit:junit-bom:5.10.0') // JUnit 관련 의존성 버전 통일 관리
+    testImplementation 'org.junit.jupiter:junit-jupiter' // JUnit 단위 테스트용
+}
+
+test {
+    useJUnitPlatform()
+}

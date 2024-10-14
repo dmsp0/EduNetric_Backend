@@ -1,5 +1,6 @@
 package com.edunetric.entity
 
+
 import Student
 import jakarta.persistence.*
 import java.time.LocalDate

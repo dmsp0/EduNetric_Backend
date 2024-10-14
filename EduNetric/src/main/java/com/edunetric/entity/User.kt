@@ -1,5 +1,6 @@
 package com.edunetric.entity
 
+import com.edunetric.dto.UserDto
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -37,4 +38,15 @@ open class User(
 
 enum class UserRole {
     STUDENT, GUARDIAN, TEACHER, ADMIN
+}
+
+// User 엔티티를 UserDto로 변환하는 확장 함수
+fun User.toDto(): UserDto {
+    return UserDto(
+        userId = this.userId,
+        userName = this.userName,
+        fullName = this.fullName,
+        phoneNumber = this.phoneNumber,
+        role = this.role
+    )
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "User")
-open class User(
+open class UserEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ enum class UserRole {
 }
 
 // User 엔티티를 UserDto로 변환하는 확장 함수
-fun User.toDto(): UserDto {
+fun UserEntity.toDto(): UserDto {
     return UserDto(
         userId = this.userId,
         userName = this.userName,

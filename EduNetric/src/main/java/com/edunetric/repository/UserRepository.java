@@ -1,11 +1,13 @@
 package com.edunetric.repository;
 
-import com.edunetric.entity.User;
+import com.edunetric.entity.UserEntityKt;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.edunetric.entity.UserEntity;  // UserEntity import
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    // 추가적으로 사용자 이름으로 검색하는 메소드도 작성할 수 있습니다.
-    Optional<User> findByUserName(String userName);
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    // 사용자 이름으로 검색하는 메소드
+    Optional<UserEntity> findByUserName(String userName);
 }
